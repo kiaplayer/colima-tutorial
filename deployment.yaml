@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubeapp-example
+  labels:
+    app: kubeapp
+spec:
+  selector:
+    matchLabels:
+      app: kubeapp
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: kubeapp
+    spec:
+      containers:
+        - name: app
+          image: kubeapp
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8890
